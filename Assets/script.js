@@ -1,3 +1,6 @@
+var startButton = document.querySelector(".button");
+
+
 function askQuestions(){
     var questions = [
         { q: "Which are the only places in the world where you can't buy Coca-Cola?", a: "North Korea & Cuba" },
@@ -17,7 +20,7 @@ function askQuestions(){
           var answer=prompt(questions[i].q);
 
           if (answer === questions[i].a){
-              score += score;
+              score ++;
               alert("Correct!");
           }
 
@@ -27,4 +30,6 @@ function askQuestions(){
       }
       alert("You got " + score + "/" + questions.length);
 }
+
+startButton.addEventListener("click", askQuestions);
 
