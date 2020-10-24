@@ -6,8 +6,9 @@ var option2Btn = document.querySelector("#option2");
 var option3Btn = document.querySelector("#option3");
 var option4Btn = document.querySelector("#option4");
 
-console.log(option1Btn.textContent);
-
+option1Btn.addEventListener("click", function(){
+    console.log("clock");
+});
 
 function askQuestions(){
     var questions = [
@@ -23,29 +24,52 @@ function askQuestions(){
       ];
 
     
-      var score=0;
+    var score=0;
 
-      for (let i = 0; i < questions.length; i++) {
+    for (let i = 0; i < questions.length; i++) {
         
+        var answer="";
         questionText.textContent=questions[i].q;
         option1Btn.textContent=questions[i].choices.a;
         option2Btn.textContent=questions[i].choices.w[0];
         option3Btn.textContent=questions[i].choices.w[1];
         option4Btn.textContent=questions[i].choices.w[2];
 
-          var answer=prompt(questions[i].q);
+        
+        option1Btn.addEventListener("click", function(){
+            answer = option1Btn.textContent;
+            if (answer === questions[i].a){
+                score ++;
+            }
+  
+        });
 
-          if (answer === questions[i].a){
-              score ++;
-              alert("Correct!");
-          }
+        option2Btn.addEventListener("click",function(){
+            answer = option2Btn.textContent;
+            if (answer === questions[i].a){
+                score ++;
+            }
+  
+        });
 
-          else{
-              alert("Wrong!");
-          }
-      }
-      alert("You got " + score + "/" + questions.length);
+        option3Btn.addEventListener("click", function(){
+            answer = option3Btn.textContent;
+            if (answer === questions[i].a){
+                score ++;
+            }
+  
+        });
+
+        option4Btn.addEventListener("click",function(){
+            answer = option4Btn.textContent;
+            if (answer === questions[i].a){
+                score ++;
+            }
+  
+        });
+          
+    }
+    alert("You got " + score + "/" + questions.length);
 }
 
 startButton.addEventListener("click", askQuestions);
-
