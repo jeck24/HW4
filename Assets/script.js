@@ -1,18 +1,20 @@
+var highScoresButton = document.querySelector(".viewHighscoresButton");
 var startButton = document.querySelector(".button");
 
 
 function askQuestions(){
     var questions = [
-        { q: "Which are the only places in the world where you can't buy Coca-Cola?", a: "North Korea & Cuba" },
-        { q: "Which percentage of the entire world's population can fit inside LA?", a: "100%" },
-        { q: "When has the number of twins reached the maximum level in history?", a: "Now" },
-        { q: "What is the worst that can happen to you by eating the hottest chili?", a: "It can kill you" },
-        { q: "What is the country with the highest number of tourists?", a: "France" },
-        { q: "What is the size in number of soccer fields of the world's most densely populated island?", a: "2" },
-        { q: "After what animal, were The Canary Islands named after?", a: "Dog" },
-        { q: "Which country has the shortest people in the world?", a: "Indonesia" },
-        { q: "Where is the quietest room in the world?", a: "Microsoft's headquarters" }
+        { q: "Which are the only two places in the world where you can't buy Coca-Cola?", choices: {a: "North Korea & Cuba", w:["Mexico & Belize", "Saudi Arabia & Iran", "China & Myanmar"]} },
+        { q: "Which percentage of the entire world's population can fit inside LA?", choices: {a: "100%", w:["80%", "60%", "40%"] }},
+        { q: "When has the number of twins reached the maximum level in history?", choices: {a: "Now", w: ["20 years ago", "100 years ago", "1000 years ago"] }},
+        { q: "What is the worst that can happen to you by eating the hottest chili?", choices: {a: "Kill you", w: ["Bad diarrhea", "Faint", "Nothing"]}},
+        { q: "What is the country with the highest number of tourists?", choices: {a: "France", w: ["US", "China", "Australia"]}},
+        { q: "What is the size in number of soccer fields of the world's most densely populated island?", choices: {a: "2", w: ["10", "1", "<1"]}},
+        { q: "After what animal, were The Canary Islands named after?", choices: {a: "Dog", w: ["Bird", "Horse", "Lion"]}},
+        { q: "Which country has the shortest people in the world?", choices: {a: "Indonesia", w: ["Phillippines", "Congo", "Bolivia"] }},
+        { q: "Where is the quietest room in the world?", choices: {a: "Microsoft's headquarters", w: ["Lamma Temple", "Tibet", "CDMX"] }}
       ];
+
     
       var score=0;
 
@@ -30,6 +32,7 @@ function askQuestions(){
       }
       alert("You got " + score + "/" + questions.length);
 }
+
 
 startButton.addEventListener("click", askQuestions);
 
