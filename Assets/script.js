@@ -29,47 +29,61 @@ function askQuestions(){
     for (let i = 0; i < questions.length; i++) {
         
         var answer="";
-        questionText.textContent=questions[i].q;
-        option1Btn.textContent=questions[i].choices.a;
-        option2Btn.textContent=questions[i].choices.w[0];
-        option3Btn.textContent=questions[i].choices.w[1];
-        option4Btn.textContent=questions[i].choices.w[2];
 
+        function displayQuestion(){
+            questionText.textContent=questions[i].q;
+        }
         
-        option1Btn.addEventListener("click", function(){
-            answer = option1Btn.textContent;
-            if (answer === questions[i].a){
-                score ++;
-            }
-  
-        });
-
-        option2Btn.addEventListener("click",function(){
-            answer = option2Btn.textContent;
-            if (answer === questions[i].a){
-                score ++;
-            }
-  
-        });
-
-        option3Btn.addEventListener("click", function(){
-            answer = option3Btn.textContent;
-            if (answer === questions[i].a){
-                score ++;
-            }
-  
-        });
-
-        option4Btn.addEventListener("click",function(){
-            answer = option4Btn.textContent;
-            if (answer === questions[i].a){
-                score ++;
-            }
-  
-        });
+        function displayAnswers(){
+            option1Btn.textContent=questions[i].choices.a;
+            option2Btn.textContent=questions[i].choices.w[0];
+            option3Btn.textContent=questions[i].choices.w[1];
+            option4Btn.textContent=questions[i].choices.w[2];   
+        }
+        
+        function checkAnswer(){
+            option1Btn.addEventListener("click", function(){
+                answer = option1Btn.textContent;
+                if (answer === questions[i].a){
+                    score ++;
+                }
+      
+            });
+    
+            option2Btn.addEventListener("click",function(){
+                answer = option2Btn.textContent;
+                if (answer === questions[i].a){
+                    score ++;
+                }
+      
+            });
+    
+            option3Btn.addEventListener("click", function(){
+                answer = option3Btn.textContent;
+                if (answer === questions[i].a){
+                    score ++;
+                }
+      
+            });
+    
+            option4Btn.addEventListener("click",function(){
+                answer = option4Btn.textContent;
+                if (answer === questions[i].a){
+                    score ++;
+                }
+      
+            });
+        }
+        
+        displayQuestion();
+        displayAnswers();
+        checkAnswer();
+        break;
           
     }
     alert("You got " + score + "/" + questions.length);
+    console.log(score);
 }
 
 startButton.addEventListener("click", askQuestions);
+
