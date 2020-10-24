@@ -2,6 +2,6 @@ container{
     max-width: 50px;
     margin: auto;
 }
-h1, h2, .descriptionText, .button, .resultMessage{
+h1, h2, .descriptionText, .button, .resultMessage, div{
     text-align: center;
 };

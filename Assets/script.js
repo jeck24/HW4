@@ -25,8 +25,9 @@ var lastQuestion = questions.length-1;
 var count=0;
 var timer=0;
 var score=0;
-var questionTime=15;
+var questionTime=10;
 var speed = setInterval(counter,1000);
+var newHighScore = "";
 
 option1Btn.addEventListener("click", function(){
     answer = option1Btn.textContent;
@@ -67,8 +68,9 @@ function counter(){
     }
     else{
         timer=0;
-        if(count<lastQuestion){
+        if(count<=lastQuestion){
             count++;
+            score--;
             displayQuestion();
         }
         else{
@@ -80,7 +82,22 @@ function counter(){
 }
 
 function saveHighscore(){
-    
+        var newDiv = document.createElement('div');
+        var newBtn = document.createElement('button');
+        var newInput= document.createElement('input');
+        newDiv.textContent="Please input your name";
+        newDiv.appendChild(newInput);
+        newDiv.appendChild(newBtn);
+        newBtn.textContent="Save";
+        document.body.appendChild(newDiv);
+        newHighScore = newInput.value;
+        addNewHighScore();    
+}
+
+function addNewHighScore(){
+    var li = document.createElement("li");
+    li.textContent = newHighScore;
+    document.body.appendChild(li);
 }
 
 function displayScore(){
