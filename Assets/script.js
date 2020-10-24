@@ -1,5 +1,6 @@
 var highScoresButton = document.querySelector(".viewHighscoresButton");
 var startButton = document.querySelector("#startQuiz");
+var questionText = document.querySelector(".question");
 var option1Btn = document.querySelector("#option1");
 var option2Btn = document.querySelector("#option2");
 var option3Btn = document.querySelector("#option3");
@@ -25,7 +26,8 @@ function askQuestions(){
       var score=0;
 
       for (let i = 0; i < questions.length; i++) {
-          
+        
+        questionText.textContent=questions[i].q;
         option1Btn.textContent=questions[i].choices.a;
         option2Btn.textContent=questions[i].choices.w[0];
         option3Btn.textContent=questions[i].choices.w[1];
