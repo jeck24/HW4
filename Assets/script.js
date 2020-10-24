@@ -5,10 +5,14 @@ var option1Btn = document.querySelector("#option1");
 var option2Btn = document.querySelector("#option2");
 var option3Btn = document.querySelector("#option3");
 var option4Btn = document.querySelector("#option4");
+var counterDisplay = document.querySelector(".counter");
+var scoreDisplay = document.querySelector(".score");
 
-var score=0;
+
 var count=0;
-var answer="";
+var timer=0;
+var score=0;
+var questionTime=59;
 
 var questions = [
     { q: "Which are the only two places in the world where you can't buy Coca-Cola?", choiceA: "North Korea & Cuba", choiceB:"Mexico & Belize", choiceC: "Saudi Arabia & Iran", choiceD: "China & Myanmar", correct: "A"},
@@ -22,20 +26,60 @@ var questions = [
     { q: "Where is the quietest room in the world?", choiceA: "Microsoft's headquarters", choiceB: "Lamma Temple", choiceC: "Tibet", choiceD: "CDMX", correct:"A"}
   ];
 
+var lastQuestion = questions.length-1;
+
 function displayQuestion(){
-    questionText.textContent=questions[count].q;
+    var question = questions[count];
+    questionText.textContent=question.q;
+    option1Btn.textContent=question.choiceA;
+    option2Btn.textContent=question.choiceB;
+    option3Btn.textContent=question.choiceC;
+    option4Btn.textContent=question.choiceD;
     console.log(questionText.textContent);
     count++;
 }
 
-function displayAnswers(){
-    option1Btn.textContent=questions[count].choiceA;
-    option2Btn.textContent=questions[count].choiceB;
-    option3Btn.textContent=questions[count].choiceC;
-    option4Btn.textContent=questions[count].choiceD;
+function counter(){
+    if(timer<=questionTime){
+        counterDisplay.textContent=timer;
+        timer++;
+    }
+    else{
+        timer=0;
+        if(count<lastQuestion){
+            count++;
+            displayQuestion();
+        }
+        else{
+            displayScore();
+        }
+    }
+
 }
 
-function checkAnswer(){
+function displayScore(){
+    scoreDisplay.textContent="Score "+score;
+}
+
+function checkAnswer(answer){
+
+    if(questions[count].correct==answer){
+        score++;
+    }
+    else{
+        score--;
+    }
+
+    if(count<lastQuestion){
+        count++;
+        displayQuestion();
+    }
+    else{
+        clearInterval(timer);
+        alert("Your score is: "+score);
+    }
+
+
     option1Btn.addEventListener("click", function(){
         answer = option1Btn.textContent;
         if (answer === questions[count].correct){
@@ -74,13 +118,13 @@ function checkAnswer(){
 
 function askQuestions(){
 
-    for (let i = 0; i < questions.length; i++) {
-        
-        displayQuestion();
-        displayAnswers();
-        checkAnswer();
+
+    counter();
+    timer=setInterval(counter,1000);
+    displayQuestion();
+    checkAnswer();
           
-    }
+    
     console.log(score);
 }
 
