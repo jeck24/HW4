@@ -6,82 +6,81 @@ var option2Btn = document.querySelector("#option2");
 var option3Btn = document.querySelector("#option3");
 var option4Btn = document.querySelector("#option4");
 
-option1Btn.addEventListener("click", function(){
-    console.log("clock");
-});
+var score=0;
+var count=0;
+var answer="";
+
+var questions = [
+    { q: "Which are the only two places in the world where you can't buy Coca-Cola?", choiceA: "North Korea & Cuba", choiceB:"Mexico & Belize", choiceC: "Saudi Arabia & Iran", choiceD: "China & Myanmar", correct: "A"},
+    { q: "Which percentage of the entire world's population can fit inside LA?", choiceA: "100%", choiceB:"80%", choiceC: "60%", choiceD:"40%", correct:"A"},
+    { q: "When has the number of twins reached the maximum level in history?", choiceA: "Now", choiceB:"20 years ago", choiceC:"100 years ago", choiceD:"1000 years ago", correct:"A"},
+    { q: "What is the worst that can happen to you by eating the hottest chili?", choiceA: "Kill you", choiceB: "Bad diarrhea", choiceC: "Faint", choiceD: "Nothing"},
+    { q: "What is the country with the highest number of tourists?", choiceA: "France", choiceB: "US", choiceC: "China", choiceD: "Australia", correct:"A"},
+    { q: "What is the size in number of soccer fields of the world's most densely populated island?", choiceA: "2", choiceB:"10", choiceC: "1", choiceD: "<1", correct:"A"},
+    { q: "After what animal, were The Canary Islands named after?", choiceA: "Dog", choiceB:"Bird", choiceC: "Horse", choiceD: "Lion", correct: "A"},
+    { q: "Which country has the shortest people in the world?", choiceA: "Indonesia", choiceB: "Phillippines", choiceC: "Congo", choiceD: "Bolivia", correct: "A"},
+    { q: "Where is the quietest room in the world?", choiceA: "Microsoft's headquarters", choiceB: "Lamma Temple", choiceC: "Tibet", choiceD: "CDMX", correct:"A"}
+  ];
+
+function displayQuestion(){
+    questionText.textContent=questions[count].q;
+    console.log(questionText.textContent);
+    count++;
+}
+
+function displayAnswers(){
+    option1Btn.textContent=questions[count].choiceA;
+    option2Btn.textContent=questions[count].choiceB;
+    option3Btn.textContent=questions[count].choiceC;
+    option4Btn.textContent=questions[count].choiceD;
+}
+
+function checkAnswer(){
+    option1Btn.addEventListener("click", function(){
+        answer = option1Btn.textContent;
+        if (answer === questions[count].correct){
+            score ++;
+        }
+
+    });
+
+    option2Btn.addEventListener("click",function(){
+        answer = option2Btn.textContent;
+        if (answer === questions[count].correct){
+            score ++;
+            count++;
+        }
+
+    });
+
+    option3Btn.addEventListener("click", function(){
+        answer = option3Btn.textContent;
+        if (answer === questions[count].correct){
+            score ++;
+            count++;
+        }
+
+    });
+
+    option4Btn.addEventListener("click",function(){
+        answer = option4Btn.textContent;
+        if (answer === questions[count].correct){
+            score ++;
+            count++;
+        }
+
+    });
+}
 
 function askQuestions(){
-    var questions = [
-        { q: "Which are the only two places in the world where you can't buy Coca-Cola?", choices: {a: "North Korea & Cuba", w:["Mexico & Belize", "Saudi Arabia & Iran", "China & Myanmar"]} },
-        { q: "Which percentage of the entire world's population can fit inside LA?", choices: {a: "100%", w:["80%", "60%", "40%"] }},
-        { q: "When has the number of twins reached the maximum level in history?", choices: {a: "Now", w: ["20 years ago", "100 years ago", "1000 years ago"] }},
-        { q: "What is the worst that can happen to you by eating the hottest chili?", choices: {a: "Kill you", w: ["Bad diarrhea", "Faint", "Nothing"]}},
-        { q: "What is the country with the highest number of tourists?", choices: {a: "France", w: ["US", "China", "Australia"]}},
-        { q: "What is the size in number of soccer fields of the world's most densely populated island?", choices: {a: "2", w: ["10", "1", "<1"]}},
-        { q: "After what animal, were The Canary Islands named after?", choices: {a: "Dog", w: ["Bird", "Horse", "Lion"]}},
-        { q: "Which country has the shortest people in the world?", choices: {a: "Indonesia", w: ["Phillippines", "Congo", "Bolivia"] }},
-        { q: "Where is the quietest room in the world?", choices: {a: "Microsoft's headquarters", w: ["Lamma Temple", "Tibet", "CDMX"] }}
-      ];
-
-    
-    var score=0;
 
     for (let i = 0; i < questions.length; i++) {
-        
-        var answer="";
-
-        function displayQuestion(){
-            questionText.textContent=questions[i].q;
-        }
-        
-        function displayAnswers(){
-            option1Btn.textContent=questions[i].choices.a;
-            option2Btn.textContent=questions[i].choices.w[0];
-            option3Btn.textContent=questions[i].choices.w[1];
-            option4Btn.textContent=questions[i].choices.w[2];   
-        }
-        
-        function checkAnswer(){
-            option1Btn.addEventListener("click", function(){
-                answer = option1Btn.textContent;
-                if (answer === questions[i].a){
-                    score ++;
-                }
-      
-            });
-    
-            option2Btn.addEventListener("click",function(){
-                answer = option2Btn.textContent;
-                if (answer === questions[i].a){
-                    score ++;
-                }
-      
-            });
-    
-            option3Btn.addEventListener("click", function(){
-                answer = option3Btn.textContent;
-                if (answer === questions[i].a){
-                    score ++;
-                }
-      
-            });
-    
-            option4Btn.addEventListener("click",function(){
-                answer = option4Btn.textContent;
-                if (answer === questions[i].a){
-                    score ++;
-                }
-      
-            });
-        }
         
         displayQuestion();
         displayAnswers();
         checkAnswer();
-        break;
           
     }
-    alert("You got " + score + "/" + questions.length);
     console.log(score);
 }
 
